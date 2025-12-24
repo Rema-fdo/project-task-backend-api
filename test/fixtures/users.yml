@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  \: MyString
+  name: MyString
+  \: MyString
+  email: MyString
+  \: MyString
+  mobile: MyString
+  \: MyString
+  password_digest: MyString
+  \: MyString
+  role: MyString
+  \: MyString
+  department: one
+
+two:
+  \: MyString
+  name: MyString
+  \: MyString
+  email: MyString
+  \: MyString
+  mobile: MyString
+  \: MyString
+  password_digest: MyString
+  \: MyString
+  role: MyString
+  \: MyString
+  department: two
