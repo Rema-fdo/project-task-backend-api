@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_24_123428) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_24_125025) do
   create_table "attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "attachable_id", null: false
     t.string "attachable_type", null: false
@@ -71,6 +71,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_123428) do
     t.index ["name"], name: "index_statuses_on_name", unique: true
   end
 
+  create_table "task_members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "task_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["task_id"], name: "index_task_members_on_task_id"
+    t.index ["user_id"], name: "index_task_members_on_user_id"
+  end
+
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "actual_end_date"
     t.date "actual_start_date"
@@ -107,6 +116,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_123428) do
 
   add_foreign_key "comments", "tasks"
   add_foreign_key "otps", "users"
+  add_foreign_key "task_members", "tasks"
+  add_foreign_key "task_members", "users"
   add_foreign_key "tasks", "priorities"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "statuses"
