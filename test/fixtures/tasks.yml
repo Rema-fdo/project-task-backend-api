@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  due_date: 2025-12-24
+  actual_start_date: 2025-12-24
+  actual_end_date: 2025-12-24
+  team: MyString
+  status: one
+  priority: one
+  project: one
+  parent_task_id: 
+  created_by: 
+  updated_by: 
+
+two:
+  title: MyString
+  description: MyText
+  due_date: 2025-12-24
+  actual_start_date: 2025-12-24
+  actual_end_date: 2025-12-24
+  team: MyString
+  status: two
+  priority: two
+  project: two
+  parent_task_id: 
+  created_by: 
+  updated_by: 
