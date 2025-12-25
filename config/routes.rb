@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :departments
       resources :statuses
       resources :priorities
+       resources :projects, only: [:index, :show] 
     end
   end
 end
