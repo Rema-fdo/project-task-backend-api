@@ -272,9 +272,3 @@ Each CRUD operation is implemented using a dedicated service class:
 * Role-based authorization
 * Swagger / OpenAPI documentation
 * RSpec test coverage
-
----
-
-## 11. Conclusion
-
-This API follows real-world Rails backend best practices and is suitable for production-grade applications, technical assignments, and interviews.
