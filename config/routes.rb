@@ -17,22 +17,22 @@ Rails.application.routes.draw do
       resources :statuses
       resources :priorities
 
-      resources :projects do
-        resources :tasks, only: [ :index, :create ] do
-          resources :comments
-          resources :attachments, only: [ :index, :show, :create, :destroy ]
-          resources :task_members, only: [ :index, :create, :destroy ]
+      resources :projects, controller: "projects" do
+        resources :tasks, controller: "tasks", only: [ :index, :create ] do
+          resources :comments, controller: "comments"
+          resources :attachments, controller: "attachments", only: [ :index, :show, :create, :destroy ]
+          resources :task_members, controller: "task_members", only: [ :index, :create, :destroy ]
         end
       end
 
-      resources :tasks, only: [ :show, :update, :destroy ] do
-        resources :comments
-        resources :attachments, only: [ :index, :show, :create, :destroy ]
-        resources :task_members, only: [ :index, :create, :destroy ]
+      resources :tasks, controller: "tasks", only: [ :show, :update, :destroy ] do
+        resources :comments, controller: "comments"
+        resources :attachments, controller: "attachments", only: [ :index, :show, :create, :destroy ]
+        resources :task_members, controller: "task_members", only: [ :index, :create, :destroy ]
       end
 
-      resources :comments, only: [] do
-        resources :attachments, only: [ :index, :show, :create, :destroy ]
+      resources :comments, controller: "comments", only: [] do
+        resources :attachments, controller: "attachments", only: [ :index, :show, :create, :destroy ]
       end
     end
   end
