@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Health check endpoint
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
   namespace :api do
     namespace :v1 do
       post "register", to: "auth#register"
@@ -17,14 +12,27 @@ Rails.application.routes.draw do
       post "verify-otp-login", to: "auth#verify_otp_login"
 
       resource :profile, controller: "profile", only: [ :show, :update ]
+
       resources :departments
       resources :statuses
       resources :priorities
+
       resources :projects do
-        resources :tasks, only: [ :index, :create ]
+        resources :tasks, only: [ :index, :create ] do
+          resources :comments
+          resources :attachments, only: [ :index, :show, :create, :destroy ]
+          resources :task_members, only: [ :index, :create, :destroy ]
+        end
       end
+
       resources :tasks, only: [ :show, :update, :destroy ] do
         resources :comments
+        resources :attachments, only: [ :index, :show, :create, :destroy ]
+        resources :task_members, only: [ :index, :create, :destroy ]
+      end
+
+      resources :comments, only: [] do
+        resources :attachments, only: [ :index, :show, :create, :destroy ]
       end
     end
   end
