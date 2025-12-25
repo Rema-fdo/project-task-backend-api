@@ -20,7 +20,12 @@ Rails.application.routes.draw do
       resources :departments
       resources :statuses
       resources :priorities
-       resources :projects, only: [:index, :show] 
+      resources :projects do
+        resources :tasks, only: [ :index, :create ]
+      end
+      resources :tasks, only: [ :show, :update, :destroy ] do
+        resources :comments
+      end
     end
   end
 end
