@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   belongs_to :department
   has_many :otps, dependent: :destroy
+  has_many :task_members, dependent: :destroy
+  has_many :tasks, through: :task_members
+
   has_secure_password
   ROLES = %w[admin manager employee].freeze
   validates :name, presence: true, length: { minimum: 2, maximum: 100 }
